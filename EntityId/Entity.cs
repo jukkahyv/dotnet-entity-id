@@ -5,7 +5,7 @@ public interface IEntity
 
 }
 
-public class Entity<TSelf> : IEntity
+public abstract class Entity<TSelf> : IEntity
 {
     public required Id<TSelf> Id { get; init; }
 }

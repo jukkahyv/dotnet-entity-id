@@ -2,4 +2,4 @@
 
 namespace EntityId.Tests;
 
-class TestEntity : Entity<TestEntity>;
+public class TestEntity : Entity<TestEntity>;
