@@ -15,6 +15,6 @@ public class Repository
             _entities[entity.GetType()] = [entity];
         }
     }
-    public TEntity Get<TEntity>(Id<TEntity> id) where TEntity : Entity<TEntity> => 
-        _entities[typeof(TEntity)].OfType<TEntity>().First(e => e.Id == id);
+    public TEntity? Get<TEntity>(Id<TEntity> id) where TEntity : Entity<TEntity> => 
+        _entities[typeof(TEntity)].OfType<TEntity>().FirstOrDefault(e => e.Id == id);
 }
