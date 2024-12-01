@@ -4,3 +4,6 @@
 
 /.vs
 /EntityId/obj
+/EntityId.Tests/bin/
+/EntityId/bin/
+/EntityId.Tests/obj

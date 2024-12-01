@@ -7,5 +7,5 @@ public interface IEntity
 
 public class Entity<TSelf> : IEntity
 {
-    public Id<TSelf> Id { get; }
+    public required Id<TSelf> Id { get; init; }
 }
