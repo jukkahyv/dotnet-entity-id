@@ -1,7 +1,5 @@
 ﻿namespace EntityId.Tests;
 
-using TestEntityId = Id<TestEntity>;
-
 public class RepositoryTests
 {
     [Fact]
