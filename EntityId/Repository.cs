@@ -4,7 +4,7 @@ public class Repository
 {
     private readonly Dictionary<Type, List<IEntity>> _entities = [];
 
-    public void Add<TEntity>(TEntity entity) where TEntity: Entity<TEntity>
+    public void Add<TEntity>(TEntity entity) where TEntity: IEntity
     {
         if (_entities.TryGetValue(entity.GetType(), out var entities))
         {

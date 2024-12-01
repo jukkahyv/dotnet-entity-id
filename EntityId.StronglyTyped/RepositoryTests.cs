@@ -13,7 +13,7 @@ public class RepositoryTests
         repository.Add(entity);
 
         Assert.Equal(entity, repository.Get<TestEntity, TestEntityId>(id));
-        Assert.Null(repository.Get(new TestEntityId(456)));
+        Assert.Null(repository.Get<TestEntity, TestEntityId>(new TestEntityId(456)));
         Assert.Null(repository.Get<TestEntity, TestEntityId>(TestEntityId.Empty));
     }
 }
