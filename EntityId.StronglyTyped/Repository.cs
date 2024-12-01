@@ -19,7 +19,7 @@ public class Repository
 
     public TEntity? Get<TEntity, TId>(TId id) 
         where TEntity : Entity<TEntity, TId>
-        where TId : notnull
+        where TId : notnull, IId<TEntity>
         =>
         _entities[typeof(TEntity)].OfType<TEntity>().FirstOrDefault(e => e.Id.Equals(id));
 }
