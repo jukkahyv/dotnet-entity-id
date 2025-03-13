@@ -1,4 +1,6 @@
-﻿namespace EntityId.Tests;
+﻿using EntityId.Entities;
+
+namespace EntityId.Tests;
 
 public class RepositoryTests
 {
