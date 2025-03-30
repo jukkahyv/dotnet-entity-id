@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\EntityId\Usings.cs" Link="Usings.cs" />
+    <Compile Include="..\EntityId\Generated\EntityId.Generator\EntityId.Generator.EntityIdGenerator\EntityIdUsings.g.cs" Link="Usings.cs" />
   </ItemGroup>
 
   <ItemGroup>
