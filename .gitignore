@@ -9,3 +9,5 @@
 /EntityId.Tests/obj
 /EntityId.StronglyTyped/bin/
 /EntityId.StronglyTyped/obj
+/EntityId.Generator/obj
+/EntityId.Generator/bin/Debug/netstandard2.0
