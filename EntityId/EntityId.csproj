@@ -4,6 +4,17 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>  
+	<CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EntityId.Generator\EntityId.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\EntityId.Shared\EntityId.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+  </ItemGroup>	
 
 </Project>
