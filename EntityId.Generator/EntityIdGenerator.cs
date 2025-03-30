@@ -30,13 +30,7 @@ namespace EntityId.Generator
             return new TypeInfo(className, classFullPath);
         }
 
-        private static bool ShouldHandle(SyntaxNode node, CancellationToken _)
-        {
-            var result = false;
-            if (node is not ClassDeclarationSyntax classDeclaration) return result;
-            var baseTypes = classDeclaration.BaseList?.Types.Select(t => t?.ToString() ?? "").ToArray() ?? [];
-            return baseTypes.Any(t => t.StartsWith("Entity"));
-        }
+        private static bool ShouldHandle(SyntaxNode node, CancellationToken _) => true;
 
         private void Execute(SourceProductionContext context, ImmutableArray<TypeInfo> entities)
         {
