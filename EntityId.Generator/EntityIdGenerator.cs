@@ -6,13 +6,19 @@ using System.Threading;
 
 namespace EntityId.Generator;
 
+/// <summary>
+/// Generates Entity IDs.
+/// </summary>
+/// <remarks>
+/// Code inspired by similar library https://github.com/andrewlock/StronglyTypedId
+/// </remarks>
 [Generator]
 public class EntityIdGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
-            $"EntityId.{nameof(EntityAttribute)}",
+            AttributeName,
             predicate: ShouldHandle,
             transform: GetIdTypeInfo
         ).Collect();
@@ -20,29 +26,33 @@ public class EntityIdGenerator : IIncrementalGenerator
         context.RegisterSourceOutput(provider, Execute);
     }
 
+    private const string AttributeName = $"EntityId.{nameof(EntityAttribute)}";
+
+    private static bool ShouldHandle(SyntaxNode node, CancellationToken _)
+        => node is ClassDeclarationSyntax;
+
     private static TypeInfo GetIdTypeInfo(GeneratorAttributeSyntaxContext context, CancellationToken _)
     {
         var classDeclaration = (ClassDeclarationSyntax)context.TargetNode;
-        var typeSymbol = context.SemanticModel.GetDeclaredSymbol(classDeclaration);
-        var classFullPath = typeSymbol!.ToString() ?? "";
         var className = classDeclaration.Identifier.ToString();
-        return new TypeInfo(className, classFullPath);
+        return new TypeInfo(className, GetClassFullPath(context, classDeclaration));
     }
 
-    private static bool ShouldHandle(SyntaxNode node, CancellationToken _) 
-        => node is ClassDeclarationSyntax;
+    private static string GetClassFullPath(
+        GeneratorAttributeSyntaxContext context, ClassDeclarationSyntax classDeclaration) 
+        => context.SemanticModel.GetDeclaredSymbol(classDeclaration)?.ToString() ?? "";
 
     private void Execute(SourceProductionContext context, ImmutableArray<TypeInfo> entities)
     {
         var sb = new StringBuilder();
         foreach (var entity in entities)
         {
-            AppendId(sb, entity);
+            AppendIdToFile(sb, entity);
         }
         context.AddSource($"EntityIdUsings.g.cs", sb.ToString());
     }
 
-    private void AppendId(StringBuilder codeBuilder, TypeInfo entity)
+    private void AppendIdToFile(StringBuilder codeBuilder, TypeInfo entity)
     {
         var aliasName = $"{entity.ClassName}Id";
         var fullTypeName = $"EntityId.Id<{entity.ClassFullPath}>";
