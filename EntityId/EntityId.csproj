@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntityId.Generator\EntityId.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\EntityId.Shared\EntityId.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

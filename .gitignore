@@ -11,3 +11,5 @@
 /EntityId.StronglyTyped/obj
 /EntityId.Generator/obj
 /EntityId.Generator/bin/
+/EntityId.Shared/obj
+/EntityId.Shared/bin/

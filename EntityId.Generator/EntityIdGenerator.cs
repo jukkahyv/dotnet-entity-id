@@ -13,7 +13,7 @@ namespace EntityId.Generator
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
-                "EntityId.EntityAttribute",
+                $"EntityId.{nameof(EntityAttribute)}",
                 predicate: ShouldHandle,
                 transform: GetIdTypeInfo
             ).Collect();
