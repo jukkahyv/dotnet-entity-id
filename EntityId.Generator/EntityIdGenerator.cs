@@ -17,6 +17,7 @@ public class EntityIdGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        // Find classes implementing EntityAttribute
         var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
             AttributeName,
             predicate: ShouldHandle,
