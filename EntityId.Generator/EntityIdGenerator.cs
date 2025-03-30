@@ -25,12 +25,13 @@ namespace EntityId.Generator
         {
             var classDeclaration = (ClassDeclarationSyntax)context.TargetNode;
             var typeSymbol = context.SemanticModel.GetDeclaredSymbol(classDeclaration);
-            var className = classDeclaration.Identifier.ToString();
             var classFullPath = typeSymbol!.ToString() ?? "";
+            var className = classDeclaration.Identifier.ToString();
             return new TypeInfo(className, classFullPath);
         }
 
-        private static bool ShouldHandle(SyntaxNode node, CancellationToken _) => true;
+        private static bool ShouldHandle(SyntaxNode node, CancellationToken _) 
+            => node is ClassDeclarationSyntax;
 
         private void Execute(SourceProductionContext context, ImmutableArray<TypeInfo> entities)
         {
